@@ -103,5 +103,4 @@
 
 Note:
 The relative Jyputer Notebooks in Code folder are:
-- 2.3.1 HR Columns Analysis.ipynb
-- 2.3.2 Sample Comparative Analysis.ipynb
+- 2.0.1 statistic knowledge.ipynb
