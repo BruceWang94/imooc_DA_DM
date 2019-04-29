@@ -109,7 +109,7 @@ There are two Jyputer Notebooks can seen in Code folder:
 
 ### 2.4 可视化分析
 Python可视化工具：matplotlib，seaborn，plotly
+
 Note:
 The relative Jyputer Notebooks in Code folder are:
-- 2.3.1 HR Columns Analysis.ipynb
-- 2.3.2 Sample Comparative Analysis.ipynb
+- 2.4 Visualization.ipynb
