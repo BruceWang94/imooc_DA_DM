@@ -334,3 +334,7 @@ $$$$
     $$A_{m \times n} \approx U_{m \times r} \Sigma_{r \times r} V_{r \times n}^T$$
 
     $$U_{r \times m}^T A_{m \times n} \approx  \Sigma_{r \times r} V_{r \times n}^T$$
+
+Note:
+The relative Jyputer Notebooks in Code folder are:
+- 2.0.2 theoretical background.ipynb
