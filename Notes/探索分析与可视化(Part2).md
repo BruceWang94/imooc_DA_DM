@@ -20,68 +20,112 @@ The relative Jyputer Notebooks in Code folder are:
 - 2.5.1 Cross Analysis.ipynb
 
 #### 2.5.2 分组分析
-有两种含义：
+分组分析有两种含义：
 - 将数据分组后，再进行分析比较；
 - 根据数据的特征，将数据进行切分。分成不同的组，是的组内成员尽可能的靠拢，组间的成员尽可能远离。
 
-根据第二个含义，如果指定每条数据的分组，来计算未知数据的分组，这个过程为分类。而如果不知道分组，只是想把数据物以类聚，这个过程为聚类。
+根据第二个含义，如果指定每条数据的分组，来计算未知数据的分组，这个过程为分类。而如果不知道分组，只是想把数据物以类聚，这个过程为聚类。这部分以后讨论。
 
-一般需要结合其他分析方法一起使用，所以分组分析更像是一种辅助的手段，而不是目的性分析。例如在对比分析与交叉分析中，都是用了分组手段。常用的手段是：钻取
+这里讨论第一个含义。一般需要结合其他分析方法一起使用，所以分组分析更像是一种辅助的手段，而不是目的性分析。例如在对比分析与交叉分析中，都是讲到了数据分组。常用的手段是：钻取
 - 钻取是改变维度的层次，变化分析粒度的过程。
 
 根据方向不同可分：向上钻取与向下钻取。
-- 向下钻取：展开数据，查看数据细节的过程
-- 向上钻取：分组汇总数据的过程。
+- 向下钻取：展开数据，查看数据细节的过程；
+- 向上钻取：汇总分组数据的过程。
 
+离散数据的分组相对容易，而连续属性的分组，在分组前需要进行离散化。在连续属性的离散化前，可以看下数据分布，看下是否有明显的区分标志。例如，将数据从小到大排列后，有没有明显的分隔或是明显的拐点。
 - 连续分组
+    - 分隔（一阶差分）：相邻两个数据的差
+    - 拐点（二阶差分）
+    - 聚类：连续属性的分组要具有相同的分组比较聚拢，不同的分组比较分离的特点。
+    - 不纯度（Gini）：考虑标注的话，可以考虑不纯度的指标
 
+- 不纯度（Gini系数）
 
-不纯度（Gini系数）
+    $$ Gini(D) = 1 - \sum{(\frac{C_k}{D})^2}$$
 
-$$ Gini(D) = 1 - \sum{(\frac{C_k}{D})^2}$$
+    其中，$D$为目标的标注，$C$是相对于关注的属性来说要比较要对比的属性。例如下表中，$X$相对于$Y$是否具有很好的区分度，
 
-例如：
+    <table>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+        </tr>
+        <tr>
+            <td>X1</td>
+            <td>Y1</td>
+        </tr>
+        <tr>
+            <td>X1</td>
+            <td>Y1</td>
+        </tr>
+        <tr>
+            <td>X2</td>
+            <td>Y1</td>
+        </tr>
+        <tr>
+            <td>X1</td>
+            <td>Y2</td>
+        </tr>
+        <tr>
+            <td>X1</td>
+            <td>Y2</td>
+        </tr>
+    </table>
 
-<table>
-    <tr>
-        <td>A<td>
-        <td>B<td>
-    </tr>
-    <tr>
-        <td>X1<td>
-        <td>Y1<td>
-    </tr>
-    <tr>
-        <td>X1<td>
-        <td>Y1<td>
-    </tr>
-    <tr>
-        <td>X2<td>
-        <td>Y1<td>
-    </tr>
-    <tr>
-        <td>X1<td>
-        <td>Y2<td>
-    </tr>
-    <tr>
-        <td>X1<td>
-        <td>Y2<td>
-    </tr>
-</table>
+    所以，$Gini$系数为：
 
+    $$
+    Gini(D) = 1 - ((\frac{Count_{X1|Y1}}{Count_{Y1}})^2 + (\frac{Count_{X2|Y1}}{Count_{Y1}})^2 + (\frac{Count_{X1|Y2}}{Count_{Y2}})^2 + (\frac{Count_{X2|Y2}}{Count_{Y2}})^2)
+    $$
+
+    连续值的$Gini$系数的确定：需要先将表按连续值的大小进行排序，相邻两两间划定界限。分别确定分组值，然后分别计算$Gini$系数，取$Gini$系数最小的为分界。
+
+    例如：
+
+    <table>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+        </tr>
+        <tr>
+            <td>0.1</td>
+            <td>Y1</td>
+        </tr>
+        <tr>
+            <td>0.2</td>
+            <td>Y1</td>
+        </tr>
+        <tr>
+            <td>0.7</td>
+            <td>Y1</td>
+        </tr>
+        <tr>
+            <td>0.8</td>
+            <td>Y2</td>
+        </tr>
+        <tr>
+            <td>0.9</td>
+            <td>Y2</td>
+        </tr>
+    </table>
+
+    这里，当切分为$X1 = [0.1, 0.2, 0.7]$，$X2 = [0.8, 0.9]$时，$Gini$系数等于0是最小。所以可以以$0.75$进行切分，将连续数据进行分组。
+
+根据不纯度进行分组，使用最多的是分类模型中的决策树算法中的CART算法，这里以后会解释。
 
 Note:
 The relative Jyputer Notebooks in Code folder are:
-- 2.5.1 Cross Analysis.ipynb
+- 2.5.2 Group Analysis.ipynb
 
 #### 2.5.3 相关分析
 
 Note:
 The relative Jyputer Notebooks in Code folder are:
-- 2.5.1 Cross Analysis.ipynb
+- 2.5.3 Correlation Analysis.ipynb
 
 #### 2.5.4 因子分析
 
 Note:
 The relative Jyputer Notebooks in Code folder are:
-- 2.5.1 Cross Analysis.ipynb
+- 2.5.4 Factor Analysis.ipynb
