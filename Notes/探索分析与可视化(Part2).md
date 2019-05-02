@@ -120,6 +120,44 @@ The relative Jyputer Notebooks in Code folder are:
 
 #### 2.5.3 相关分析
 
+相关分析是衡量两组数据或两组样本分布趋势或变化趋势大小的分析方法。最常使用的就是相关系数：
+
+- Perason相关系数
+
+    $$r(X,Y) = \frac{Cov(X,Y)}{\sigma_x \sigma_y} = \frac{E[(X-\mu_x)(Y-\mu_y)]}{\sigma_x\sigma_y}$$
+
+- Spearman相关系数
+
+    $$\rho_s = 1 - \frac{6\sum{d_i^2}}{n(n^2-1)}$$
+
+这里的相关分析是用相关系数直接衡量连续值的相关性，而离散属性的相关性如何分析？
+
+先考虑一个特例：二类离散属性的相关性。二类属性是可以直接用Pearson相关系数来计算，可能会有失真。也可以用过不纯度计算。
+多类离散属性的数据，如果是定序数据的话例如low、media、high，可以编码为0、1、2进行Pearson相关系数的计算，但这样会有失真。
+
+更为一般的，可以使用熵。熵是用来衡量一个不确定性的值。如果值接近于0，不确定值越小。如果$\log$以2为底，那么熵的单位是bit。
+- 熵
+
+    $$H(X)=-\sum{p_i \log(p_i)}$$
+- 条件熵
+
+    $$H(Y|X)=\sum{p(x_i)H(Y|X=x_i)}$$
+- 互信息（熵增益）
+
+    $$I(X,Y)=H(Y)-H(Y|X)=H(X)-H(X|Y)$$
+
+    缺点，对于分类数目多的特征有不正确的偏向，即不具有归一化的特点。它的不确定性是上不封顶，对于界定相关性不方便。
+- 熵增益率
+
+    $$GainRatio(X \to Y) = \frac{I(X, Y)}{H(Y)}$$
+
+    值是介于$(0,1)$之间，但是它是不对称性，即$GainRatio(X \to Y) \neq GainRatio(Y \to X)$。
+- 相关性
+
+    $$Corr(X,Y)=\frac{I(X,Y)}{\sqrt{H(X)H(Y)}}$$
+
+    值是介于$(0,1)$之间，同时满足对称性。
+
 Note:
 The relative Jyputer Notebooks in Code folder are:
 - 2.5.3 Correlation Analysis.ipynb
