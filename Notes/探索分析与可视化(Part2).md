@@ -1,8 +1,8 @@
-## 2. 探索分析与可视化（Part 2）
+# 2. 探索分析与可视化（Part 2）
 
 探索性数据分析（复合分析）可视化
 
-### 2.5 复合分析
+## 2.5 复合分析
 - 交叉分析
 - 分组分析
 - 相关分析
@@ -10,7 +10,7 @@
 - 聚类分析（暂略）
 - 回归分析（暂略）
 
-#### 2.5.1 交叉分析
+### 2.5.1 交叉分析
 有一张数据表，最简单的方法，我们可以通过一行或者一列的角度分析。但有时并不能得到最真是最客观的结论，我们忽略了数据间、属性间的关联性。
 
 我们可以任意取两列，根据假设检验来判断两者间是否有联系；或者，以一个或几个属性为行，令一个或几个属性为列，做成一张交叉表（也叫透视表）。
@@ -19,7 +19,7 @@ Note:
 The relative Jyputer Notebooks in Code folder are:
 - 2.5.1 Cross Analysis.ipynb
 
-#### 2.5.2 分组分析
+### 2.5.2 分组分析
 分组分析有两种含义：
 - 将数据分组后，再进行分析比较；
 - 根据数据的特征，将数据进行切分。分成不同的组，是的组内成员尽可能的靠拢，组间的成员尽可能远离。
@@ -118,7 +118,7 @@ Note:
 The relative Jyputer Notebooks in Code folder are:
 - 2.5.2 Group Analysis.ipynb
 
-#### 2.5.3 相关分析
+### 2.5.3 相关分析
 
 相关分析是衡量两组数据或两组样本分布趋势或变化趋势大小的分析方法。最常使用的就是相关系数：
 
@@ -162,7 +162,7 @@ Note:
 The relative Jyputer Notebooks in Code folder are:
 - 2.5.3 Correlation Analysis.ipynb
 
-#### 2.5.4 因子分析
+### 2.5.4 因子分析
 
 从多个属性变量中分析共性、相关因子的方法。
 因子分析可以分为：
@@ -185,7 +185,7 @@ Note:
 The relative Jyputer Notebooks in Code folder are:
 - 2.5.4 Factor Analysis.ipynb
 
-### 2.6 小结
+## 2.6 小结
 
 <table align='center'>
     <tr>
